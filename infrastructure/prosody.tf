@@ -24,3 +24,10 @@ resource "google_compute_instance" "prosody" {
     }
   }
 }
+
+resource "local_file" "prosody-info" {
+    content  = jsonencode({
+      "terraform_vm": openstack_compute_instance_v2.prosody
+    })
+    filename = "{{playbook_dir}}/host_vars/prosody/terraform-info.json"
+}

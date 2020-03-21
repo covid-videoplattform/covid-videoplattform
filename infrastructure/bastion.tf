@@ -20,3 +20,10 @@ resource "google_compute_instance" "bastion_proxy" {
     }
   }
 }
+
+resource "local_file" "bastion-info" {
+    content  = jsonencode({
+      "terraform_vm": openstack_compute_instance_v2.bastion
+    })
+    filename = "{{playbook_dir}}/host_vars/bastion/terraform-info.json"
+}
