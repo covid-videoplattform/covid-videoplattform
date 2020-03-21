@@ -4,8 +4,8 @@ bastion
 [reverse_proxies]
 reverse-proxy
 
-[web_frontends]
-#web-frontend
+[frontend_servers]
+web-frontend
 
 [jicofo_servers]
 #jicofo
