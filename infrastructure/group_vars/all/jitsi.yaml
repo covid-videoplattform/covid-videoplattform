@@ -1,1 +1,2 @@
 jitsi_domain: raum.covid-videoplattform.de
+prosody_ip: "{{ hostvars[groups.prosody_servers|first].internal_ip }}"

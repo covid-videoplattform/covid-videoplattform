@@ -1,1 +1,0 @@
-prosody_ip: "{{ hostvars[groups.prosody_servers|first].internal_ip }}"
