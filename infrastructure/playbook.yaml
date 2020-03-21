@@ -2,19 +2,19 @@
 - hosts:
   - videobridges
   roles:
-    - role: ansible-role-jitsi-videobridge
+    - role: jitsi-videobridge
 
 - hosts:
   - web_frontends
   roles:
-    - role: ansible-role-jitsi-meet-web
+    - role: jitsi-meet-web
 
 - hosts:
   - jicofo_servers
   roles:
-    - role: ansible-role-jicofo
+    - role: jicofo
 
 - hosts:
   - prosody_servers
   roles:
-    - role: ansible-role-prosody
+    - role: prosody
