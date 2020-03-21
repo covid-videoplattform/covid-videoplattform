@@ -1,6 +1,10 @@
 [bastion_servers]
 bastion
 
+
+[monitoring_servers]
+monitoring
+
 [reverse_proxies]
 reverse-proxy
 

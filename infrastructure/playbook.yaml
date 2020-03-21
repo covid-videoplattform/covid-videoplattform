@@ -20,9 +20,14 @@
     - role: jitsi-meet-web
 
 - hosts:
+  - prosody_servers
+  roles:
+    - role: jitsi-prosody
+
+- hosts:
   - jicofo_servers
   roles:
-    - role: jicofo
+    #- role: jicofo
 
 - hosts:
   - prosody_servers
@@ -40,7 +45,7 @@
       lineinfile:
         path: /etc/hosts
         regexp: "{{ item }}"
-        line: "{{ hostvars[item].local_ip }} {{ item }}"
+        line: "{{ hostvars[item].internal_ip }} {{ item }}"
       with_items: "{{ groups.all }}"
 
 - hosts:
@@ -63,3 +68,11 @@
        user: root
        state: present
        key: "{{ lookup('file', '.ssh/florian.pub') }}"
+
+- hosts: monitoring
+  roles:
+    - role: jitsi-monitoring
+
+- hosts: all
+  roles:
+    - role: jitsi-monitoring-client
