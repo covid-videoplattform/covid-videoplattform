@@ -1,2 +1,2 @@
 jvb_externalip: "{{ external_ip }}"
-jvb_localip: "{{ local_ip }}"
+jvb_localip: "{{ internal_ip }}"
