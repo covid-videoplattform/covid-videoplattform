@@ -8,7 +8,7 @@ reverse-proxy
 frontend
 
 [jicofo_servers]
-#jicofo
+jicofo
 
 [prosody_servers]
 prosody

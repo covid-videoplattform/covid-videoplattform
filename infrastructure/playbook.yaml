@@ -2,15 +2,20 @@
 
 - hosts: reverse_proxies
   roles:
+    - role: nginx
+    - role: certificate
+      vars:
+        certificate_name: "{{ jitsi_domain }}"
+        certificate_directory: /etc/ssl
+        certificate_key_usage:
+          - digitalSignature
+          - keyEncipherment
+        certificate_extended_key_usage:
+          - serverAuth
+        certificate_common_name: "{{ jitsi_domain }}"
     - role: reverse-proxy
 
-- hosts:
-  - videobridges
-  roles:
-    - role: jitsi-videobridge
-
-- hosts:
-  - web_frontends
+- hosts: frontend_servers
   roles:
     - role: jitsi-meet-web
 
@@ -23,6 +28,11 @@
   - prosody_servers
   roles:
     #- role: prosody
+
+- hosts:
+  - videobridges
+  roles:
+    - role: jitsi-videobridge
 
 - hosts: bastion_servers
   tasks:

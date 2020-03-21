@@ -1,3 +1,7 @@
+resource "google_compute_address" "frontend_ip_address" {
+  name = "frontend-ip-address"
+}
+
 resource "google_compute_instance" "frontend" {
   name         = "frontend"
   machine_type = "f1-micro"
@@ -14,6 +18,9 @@ resource "google_compute_instance" "frontend" {
 
   network_interface {
     network = google_compute_network.videoplattform_network.self_link
+    access_config {
+      nat_ip = google_compute_address.frontend_ip_address.address
+    }
   }
 }
 
