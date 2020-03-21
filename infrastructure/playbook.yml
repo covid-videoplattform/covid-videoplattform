@@ -5,12 +5,12 @@
     - role: ansible-role-jitsi-videobridge
 
 - hosts:
-  - web_servers
+  - web_frontends
   roles:
     - role: ansible-role-jitsi-meet-web
 
 - hosts:
-  - jicofo
+  - jicofo_servers
   roles:
     - role: ansible-role-jicofo
 
