@@ -1,4 +1,9 @@
 ---
+
+- hosts: reverse_proxies
+  roles:
+    - role: reverse-proxy
+
 - hosts:
   - videobridges
   roles:
