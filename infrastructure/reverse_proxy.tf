@@ -30,7 +30,7 @@ resource "local_file" "{{terraform_hostname}}-info" {
 
 resource "local_file" "reverse-proxy-info" {
     content  = jsonencode({
-      "terraform_vm": openstack_compute_instance_v2.reverse-proxy
+      "terraform_vm": openstack_compute_instance_v2.reverse_proxy
     })
     filename = "{{playbook_dir}}/host_vars/reverse-proxy/terraform-info.json"
 }
