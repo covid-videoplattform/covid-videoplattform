@@ -3,7 +3,7 @@ resource "google_compute_address" "bastion_ip_address" {
 }
 
 
-resource "google_compute_instance" "bastion_proxy" {
+resource "google_compute_instance" "bastion" {
   name         = "bastion"
   machine_type = "f1-micro"
 
@@ -23,7 +23,7 @@ resource "google_compute_instance" "bastion_proxy" {
 
 resource "local_file" "bastion-info" {
     content  = jsonencode({
-      "terraform_vm": openstack_compute_instance_v2.bastion
+      "terraform_vm": google_compute_instance.bastion
     })
-    filename = "{{playbook_dir}}/host_vars/bastion/terraform-info.json"
+    filename = "host_vars/bastion/terraform-info.json"
 }

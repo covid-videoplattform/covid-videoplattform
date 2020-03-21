@@ -21,16 +21,9 @@ resource "google_compute_instance" "reverse_proxy" {
   }
 }
 
-resource "local_file" "{{terraform_hostname}}-info" {
-    content  = jsonencode({
-      "terraform_vm": openstack_compute_instance_v2.{{terraform_hostname}}
-    })
-    filename = "{{playbook_dir}}/host_vars/{{inventory_hostname}}/terraform-info.json"
-}
-
 resource "local_file" "reverse-proxy-info" {
     content  = jsonencode({
-      "terraform_vm": openstack_compute_instance_v2.reverse_proxy
+      "terraform_vm": google_compute_instance.reverse_proxy
     })
-    filename = "{{playbook_dir}}/host_vars/reverse-proxy/terraform-info.json"
+    filename = "host_vars/reverse-proxy/terraform-info.json"
 }
