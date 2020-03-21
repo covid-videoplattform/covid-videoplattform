@@ -1,8 +1,3 @@
-resource "google_compute_address" "prosody_ip_address" {
-  name = "prosody-ip-address"
-}
-
-
 resource "google_compute_instance" "prosody" {
   name         = "prosody"
   machine_type = "f1-micro"
@@ -19,9 +14,6 @@ resource "google_compute_instance" "prosody" {
 
   network_interface {
     network = google_compute_network.videoplattform_network.self_link
-    access_config {
-      nat_ip = google_compute_address.prosody_ip_address.address
-    }
   }
 }
 
