@@ -1,3 +1,4 @@
 ansible_host: "{{ terraform_vm.network_interface[0].network_ip }}"
 ansible_ssh_common_args: '-J root@35.198.96.76'
 ansible_user: root
+local_ip: "{{ terraform_vm.network_interface[0].network_ip }}"

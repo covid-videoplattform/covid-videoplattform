@@ -19,6 +19,15 @@
   roles:
     #- role: prosody
 
+- hosts: bastion_servers
+  tasks:
+    - name: add other ips and hostnames to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: "{{ item }}"
+        line: "{{ hostvars[item].local_ip }} {{ item }}"
+      with_items: "{{ groups.all }}"
+
 - hosts:
   - all
   tasks:
