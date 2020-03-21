@@ -1,0 +1,2 @@
+jvb_externalip: "{{ terraform_vm.network_interface[0].access_config.nat_ip }}"
+jvb_localip: "{{ terraform_vm.network_interface[0].network_ip }}"

@@ -5,15 +5,15 @@ bastion
 reverse-proxy
 
 [web_frontends]
-web-frontend
+#web-frontend
 
 [jicofo_servers]
-jicofo
+#jicofo
 
 [prosody_servers]
 prosody
 
 [videobridges]
-jvb1
-jvb2
-jvb3
+#jvb1
+#jvb2
+#jvb3

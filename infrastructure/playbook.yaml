@@ -17,7 +17,7 @@
 - hosts:
   - prosody_servers
   roles:
-    - role: prosody
+    #- role: prosody
 
 - hosts:
   - all
