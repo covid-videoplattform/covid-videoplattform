@@ -20,3 +20,10 @@ resource "google_compute_instance" "reverse_proxy" {
     }
   }
 }
+
+resource "local_file" "{{terraform_hostname}}-info" {
+    content  = jsonencode({
+      "terraform_vm": openstack_compute_instance_v2.{{terraform_hostname}}
+    })
+    filename = "{{playbook_dir}}/host_vars/{{inventory_hostname}}/terraform-info.json"
+}

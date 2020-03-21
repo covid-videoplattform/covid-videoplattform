@@ -1,0 +1,13 @@
+[bastion_servers]
+bastion
+
+[reverse_proxies]
+reverse-proxy
+
+[web_frontends]
+
+
+[prosody_servers]
+prosody
+
+[videobridges]
