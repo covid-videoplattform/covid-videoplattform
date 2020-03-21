@@ -5,7 +5,7 @@ bastion
 reverse-proxy
 
 [frontend_servers]
-web-frontend
+frontend
 
 [jicofo_servers]
 #jicofo
