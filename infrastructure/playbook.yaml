@@ -18,3 +18,24 @@
   - prosody_servers
   roles:
     - role: prosody
+
+- hosts:
+  - all
+  tasks:
+   - name: add markus ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/markus.pub') }}"
+
+   - name: add brian ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/brian.pub') }}"
+
+   - name: add florian ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/florian.pub') }}"
