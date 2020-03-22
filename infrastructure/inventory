@@ -18,5 +18,4 @@ jicofo
 prosody
 
 [videobridges]
-jvb
-jvb2
+jvb-[0:2]

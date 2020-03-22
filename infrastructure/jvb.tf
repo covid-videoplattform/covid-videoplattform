@@ -1,10 +1,17 @@
+variable "videobridge_count" {
+  description = "Number of videobridges"
+  type        = number
+  default     = 3
+}
+
 resource "google_compute_address" "jvb_ip_address" {
-  name = "jvb-ip-address"
+  name = "jvb-${count.index}"
+  count = var.videobridge_count
 }
 
 resource "google_compute_instance" "jvb" {
-  name         = "jvb"
-  machine_type = "n1-standard-1"
+  name         = "jvb-${count.index}"
+  machine_type = "e2-highcpu-4"
 
   boot_disk {
     initialize_params {
@@ -19,16 +26,19 @@ resource "google_compute_instance" "jvb" {
   network_interface {
     network = google_compute_network.videoplattform_network.self_link
     access_config {
-      nat_ip = google_compute_address.jvb_ip_address.address
+      nat_ip = google_compute_address.jvb_ip_address[count.index].address
     }
   }
 
   allow_stopping_for_update = true
+
+  count = var.videobridge_count
 }
 
 resource "local_file" "jvb-info" {
     content  = jsonencode({
-      "terraform_vm": google_compute_instance.jvb
+      "terraform_vm": google_compute_instance.jvb[count.index]
     })
-    filename = "host_vars/jvb/terraform-info.json"
+    filename = "host_vars/${google_compute_instance.jvb[count.index].name}/terraform-info.json"
+    count = var.videobridge_count
 }
