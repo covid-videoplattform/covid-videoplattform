@@ -5,7 +5,7 @@ resource "google_compute_address" "monitoring_ip_address" {
 
 resource "google_compute_instance" "monitoring" {
   name         = "monitoring"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
@@ -23,6 +23,8 @@ resource "google_compute_instance" "monitoring" {
       nat_ip = google_compute_address.monitoring_ip_address.address
     }
   }
+
+  allow_stopping_for_update = true
 }
 
 resource "local_file" "monitoring-info" {

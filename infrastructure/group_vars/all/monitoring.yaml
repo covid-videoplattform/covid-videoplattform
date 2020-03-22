@@ -1,2 +1,2 @@
-influx_server: http://{{hostvars[monitoring].internal_ip}}:3001
+influx_server: "{{hostvars.monitoring.internal_ip}}"
 telegraf_secret: aap0Shu1leeluitheiThi8He

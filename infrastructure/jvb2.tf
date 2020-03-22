@@ -1,9 +1,9 @@
-resource "google_compute_address" "prosody_ip_address" {
-  name = "prosody-ip-address"
+resource "google_compute_address" "jvb2_ip_address" {
+  name = "jvb2-ip-address"
 }
 
-resource "google_compute_instance" "prosody" {
-  name         = "prosody"
+resource "google_compute_instance" "jvb2" {
+  name         = "jvb2"
   machine_type = "n1-standard-1"
 
   boot_disk {
@@ -19,16 +19,16 @@ resource "google_compute_instance" "prosody" {
   network_interface {
     network = google_compute_network.videoplattform_network.self_link
     access_config {
-      nat_ip = google_compute_address.prosody_ip_address.address
+      nat_ip = google_compute_address.jvb2_ip_address.address
     }
   }
 
   allow_stopping_for_update = true
 }
 
-resource "local_file" "prosody-info" {
+resource "local_file" "jvb2-info" {
     content  = jsonencode({
-      "terraform_vm": google_compute_instance.prosody
+      "terraform_vm": google_compute_instance.jvb2
     })
-    filename = "host_vars/prosody/terraform-info.json"
+    filename = "host_vars/jvb2/terraform-info.json"
 }

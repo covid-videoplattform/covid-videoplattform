@@ -23,6 +23,8 @@ resource "google_compute_instance" "bastion" {
       nat_ip = google_compute_address.bastion_ip_address.address
     }
   }
+  
+  allow_stopping_for_update = true
 }
 
 resource "local_file" "bastion-info" {

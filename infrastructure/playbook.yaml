@@ -63,11 +63,22 @@
        user: root
        state: present
        key: "{{ lookup('file', '.ssh/florian.pub') }}"
-#
-# - hosts: monitoring
-#   roles:
-#     - role: jitsi-monitoring
-#
-# - hosts: all
-#   roles:
-#     - role: jitsi-monitoring-client
+
+- hosts: monitoring
+  roles:
+    - role: nginx
+    - role: certificate
+      vars:
+        certificate_name: monitoring
+        certificate_directory: /etc/ssl
+        certificate_key_usage:
+          - digitalSignature
+          - keyEncipherment
+        certificate_extended_key_usage:
+          - serverAuth
+        certificate_common_name: "{{ grafana_domain }}"
+    - role: jitsi-monitoring
+
+- hosts: all
+  roles:
+    - role: jitsi-monitoring-client

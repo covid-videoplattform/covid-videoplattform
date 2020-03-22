@@ -4,7 +4,7 @@ resource "google_compute_address" "jvb_ip_address" {
 
 resource "google_compute_instance" "jvb" {
   name         = "jvb"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
@@ -22,6 +22,8 @@ resource "google_compute_instance" "jvb" {
       nat_ip = google_compute_address.jvb_ip_address.address
     }
   }
+
+  allow_stopping_for_update = true
 }
 
 resource "local_file" "jvb-info" {
