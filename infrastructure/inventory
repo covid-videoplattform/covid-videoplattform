@@ -18,6 +18,4 @@ jicofo
 prosody
 
 [videobridges]
-#jvb1
-#jvb2
-#jvb3
+jvb

@@ -1,2 +1,7 @@
 jitsi_domain: raum.covid-videoplattform.de
 prosody_ip: "{{ hostvars[groups.prosody_servers|first].internal_ip }}"
+jicofo_secret: ahyei4Seith6ruo9naehoo5i
+turncredentials_secret: phahdaeghataimae0eF5is1d
+jicofo_host: "{{ prosody_ip }}"
+jicofo_auth_password: dei5ooz8ohX2hie1oJaesh2v
+jvb_secret: ca9Joj0thahRou9toi2iesha

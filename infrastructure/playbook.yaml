@@ -1,5 +1,14 @@
 ---
 
+- hosts: bastion_servers
+  tasks:
+    - name: add other ips and hostnames to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: "{{ item }}"
+        line: "{{ hostvars[item].internal_ip }} {{ item }}"
+      with_items: "{{ groups.all }}"
+
 - hosts: reverse_proxies
   roles:
     - role: nginx
@@ -27,26 +36,12 @@
 - hosts:
   - jicofo_servers
   roles:
-    #- role: jicofo
-
-- hosts:
-  - prosody_servers
-  roles:
-    #- role: prosody
+    - role: jicofo
 
 - hosts:
   - videobridges
   roles:
     - role: jitsi-videobridge
-
-- hosts: bastion_servers
-  tasks:
-    - name: add other ips and hostnames to /etc/hosts
-      lineinfile:
-        path: /etc/hosts
-        regexp: "{{ item }}"
-        line: "{{ hostvars[item].internal_ip }} {{ item }}"
-      with_items: "{{ groups.all }}"
 
 - hosts:
   - all
@@ -68,11 +63,11 @@
        user: root
        state: present
        key: "{{ lookup('file', '.ssh/florian.pub') }}"
-
-- hosts: monitoring
-  roles:
-    - role: jitsi-monitoring
-
-- hosts: all
-  roles:
-    - role: jitsi-monitoring-client
+#
+# - hosts: monitoring
+#   roles:
+#     - role: jitsi-monitoring
+#
+# - hosts: all
+#   roles:
+#     - role: jitsi-monitoring-client
