@@ -1,5 +1,3 @@
 .terraform
-videoplatformd
-videoplatform.db
 terraform-info.json
-infrastructure/roles
+roles

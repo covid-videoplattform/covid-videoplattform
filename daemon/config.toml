@@ -1,3 +1,0 @@
-listen = "0.0.0.0:8000"
-database = "videoplatform.db"
-admin_users = [ "wucke13" ]
