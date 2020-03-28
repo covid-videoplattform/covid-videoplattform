@@ -20,7 +20,7 @@ resource "google_compute_instance" "jicofo" {
     network = google_compute_network.videoplattform_network.self_link
     #access_config {
     #  nat_ip = google_compute_address.jicofo_ip_address.address
-    #s}
+    #}
   }
 
   allow_stopping_for_update = true

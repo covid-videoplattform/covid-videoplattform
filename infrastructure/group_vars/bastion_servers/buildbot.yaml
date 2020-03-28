@@ -1,0 +1,2 @@
+certificate_provider: letsencrypt
+buildbot_server_name: buildbot.covid-videoplattform.de

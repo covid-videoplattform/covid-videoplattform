@@ -1,7 +1,6 @@
 [bastion_servers]
 bastion
 
-
 [monitoring_servers]
 monitoring
 
@@ -11,6 +10,9 @@ reverse-proxy
 [frontend_servers]
 frontend
 
+[terminfrontend_servers]
+terminfrontend
+
 [jicofo_servers]
 jicofo
 
@@ -18,4 +20,4 @@ jicofo
 prosody
 
 [videobridges]
-jvb-[0:2]
+jvb-[0:0]

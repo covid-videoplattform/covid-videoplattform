@@ -1,7 +1,7 @@
 variable "videobridge_count" {
   description = "Number of videobridges"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 resource "google_compute_address" "jvb_ip_address" {

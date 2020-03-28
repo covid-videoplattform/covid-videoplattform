@@ -1,6 +1,18 @@
 ---
 
 - hosts: bastion_servers
+  roles:
+    - name: nginx
+    - name: buildbot
+  tasks:
+    - name: add other ips and hostnames to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: "{{ item }}"
+        line: "{{ hostvars[item].internal_ip }} {{ item }}"
+      with_items: "{{ groups.all }}"
+
+- hosts: bastion_servers
   tasks:
     - name: add other ips and hostnames to /etc/hosts
       lineinfile:
@@ -23,6 +35,11 @@
           - serverAuth
         certificate_common_name: "{{ jitsi_domain }}"
     - role: reverse-proxy
+
+- hosts: terminfrontend_servers
+  roles:
+    - role: nginx
+    - role: terminfrontend
 
 - hosts: frontend_servers
   roles:
