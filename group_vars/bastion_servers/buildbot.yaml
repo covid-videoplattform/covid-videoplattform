@@ -1,2 +1,33 @@
 certificate_provider: letsencrypt
 buildbot_server_name: buildbot.covid-videoplattform.de
+buildbot_github_repos:
+  - name: github covid-videoplattform
+    workdir: covid-videoplattform
+    repourl: https://github.com/covid-videoplattform/covid-videoplattform.git
+  - name: github ansible-role-jicofo
+    workdir: ansible-roles/jicofo
+    repourl: https://github.com/covid-videoplattform/ansible-role-jicofo.git
+  - name: github ansible-role-jitsi-meet-web
+    workdir: ansible-roles/jitsi-meet-web
+    repourl: https://github.com/covid-videoplattform/ansible-role-jitsi-meet-web.git
+  - name: github ansible-role-jitsi-monitoring
+    workdir: ansible-roles/jitsi-monitoring
+    repourl: https://github.com/covid-videoplattform/ansible-role-jitsi-monitoring.git
+  - name: github ansible-role-jitsi-monitoring-client
+    workdir: ansible-roles/jitsi-monitoring-client
+    repourl: https://github.com/covid-videoplattform/ansible-role-jitsi-monitoring-client.git
+  - name: github ansible-role-jitsi-prosody
+    workdir: ansible-roles/jitsi-prosody
+    repourl: https://github.com/covid-videoplattform/ansible-role-jitsi-prosody.git
+  - name: github ansible-role-jitsi-videobridge
+    workdir: ansible-roles/jitsi-videobridge
+    repourl: https://github.com/covid-videoplattform/ansible-role-jitsi-videobridge.git
+  - name: github ansible-role-reverse-proxy
+    workdir: ansible-roles/reverse-proxy
+    repourl: https://github.com/covid-videoplattform/ansible-role-reverse-proxy.git
+  - name: github ansible-role-terminfrontend
+    workdir: ansible-roles/terminfrontend
+    repourl: https://github.com/covid-videoplattform/ansible-role-terminfrontend.git
+  - name: github django-webfrontend
+    workdir: django-webfrontend
+    repourl: https://github.com/covid-videoplattform/django-webfrontend.git
