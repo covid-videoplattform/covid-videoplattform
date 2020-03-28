@@ -4,7 +4,7 @@ resource "google_compute_address" "frontend_ip_address" {
 
 resource "google_compute_instance" "frontend" {
   name         = "frontend"
-  machine_type = "n1-standard-1"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {

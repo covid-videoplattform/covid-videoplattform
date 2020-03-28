@@ -5,7 +5,7 @@ resource "google_compute_address" "reverse_proxy_ip_address" {
 
 resource "google_compute_instance" "reverse_proxy" {
   name         = "reverse-proxy"
-  machine_type = "n1-standard-1"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {

@@ -11,7 +11,7 @@ resource "google_compute_address" "jvb_ip_address" {
 
 resource "google_compute_instance" "jvb" {
   name         = "jvb-${count.index}"
-  machine_type = "e2-highcpu-4"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {

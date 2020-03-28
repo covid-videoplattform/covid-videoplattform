@@ -4,7 +4,7 @@
 
 resource "google_compute_instance" "prosody" {
   name         = "prosody"
-  machine_type = "n1-standard-1"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {
