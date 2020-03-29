@@ -70,6 +70,9 @@ buildbot_builders:
       - name: github ansible-role-nginx
         workdir: ansible-roles/nginx
         repourl: https://github.com/covid-videoplattform/ansible-role-nginx.git
+      - name: github ansible-role-certificate
+        workdir: ansible-roles/certificate
+        repourl: https://github.com/covid-videoplattform/ansible-role-certificate.git
     shell_commands:
       - name: link ansible-roles
         command: ln -sf ../ansible-roles roles
