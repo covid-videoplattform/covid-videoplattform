@@ -2,7 +2,6 @@ resource "google_compute_address" "bastion_ip_address" {
   name = "bastion-ip-address"
 }
 
-
 resource "google_compute_instance" "bastion" {
   name         = "bastion"
   machine_type = "f1-micro"
@@ -23,13 +22,17 @@ resource "google_compute_instance" "bastion" {
       nat_ip = google_compute_address.bastion_ip_address.address
     }
   }
-  
+
   allow_stopping_for_update = true
 }
 
-resource "local_file" "bastion-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.bastion
-    })
-    filename = "host_vars/bastion/terraform-info.json"
+locals {
+  bastion_ansible_inventory = {
+    hosts = {
+      bastion = {
+        internal_ip = google_compute_instance.bastion.network_interface[0].network_ip
+        external_ip = google_compute_instance.bastion.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

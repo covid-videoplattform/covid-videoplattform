@@ -26,9 +26,13 @@ resource "google_compute_instance" "prosody" {
   allow_stopping_for_update = true
 }
 
-resource "local_file" "prosody-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.prosody
-    })
-    filename = "host_vars/prosody/terraform-info.json"
+locals {
+  prosody_ansible_inventory = {
+    hosts = {
+      prosody = {
+        internal_ip = google_compute_instance.prosody.network_interface[0].network_ip
+        #external_ip = google_compute_instance.prosody.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

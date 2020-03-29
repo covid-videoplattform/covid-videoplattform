@@ -35,10 +35,14 @@ resource "google_compute_instance" "jvb" {
   count = var.videobridge_count
 }
 
-resource "local_file" "jvb-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.jvb[count.index]
-    })
-    filename = "host_vars/${google_compute_instance.jvb[count.index].name}/terraform-info.json"
-    count = var.videobridge_count
+locals {
+  jvb_ansible_inventory = {
+    hosts = {
+      for instance in google_compute_instance.jvb[*]:
+        instance.name => {
+        internal_ip = instance.network_interface[0].network_ip
+        external_ip = instance.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

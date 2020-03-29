@@ -4,7 +4,7 @@ resource "google_compute_address" "terminfrontend_ip_address" {
 
 resource "google_compute_instance" "terminfrontend" {
   name         = "terminfrontend"
-  machine_type = "n1-standard-1"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {
@@ -26,9 +26,13 @@ resource "google_compute_instance" "terminfrontend" {
   allow_stopping_for_update = true
 }
 
-resource "local_file" "terminfrontend-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.terminfrontend
-    })
-    filename = "host_vars/terminfrontend/terraform-info.json"
+locals {
+  terminfrontend_ansible_inventory = {
+    hosts = {
+      terminfrontend = {
+        internal_ip = google_compute_instance.terminfrontend.network_interface[0].network_ip
+        external_ip = google_compute_instance.terminfrontend.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

@@ -2,7 +2,6 @@ resource "google_compute_address" "reverse_proxy_ip_address" {
   name = "reverse-proxy-ip-address"
 }
 
-
 resource "google_compute_instance" "reverse_proxy" {
   name         = "reverse-proxy"
   machine_type = "g1-small"
@@ -27,9 +26,13 @@ resource "google_compute_instance" "reverse_proxy" {
   allow_stopping_for_update = true
 }
 
-resource "local_file" "reverse-proxy-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.reverse_proxy
-    })
-    filename = "host_vars/reverse-proxy/terraform-info.json"
+locals {
+  reverse_proxy_ansible_inventory = {
+    hosts = {
+      reverse-proxy = {
+        internal_ip = google_compute_instance.reverse_proxy.network_interface[0].network_ip
+        external_ip = google_compute_instance.reverse_proxy.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

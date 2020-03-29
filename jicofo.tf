@@ -26,9 +26,13 @@ resource "google_compute_instance" "jicofo" {
   allow_stopping_for_update = true
 }
 
-resource "local_file" "jicofo-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.jicofo
-    })
-    filename = "host_vars/jicofo/terraform-info.json"
+locals {
+  jicofo_ansible_inventory = {
+    hosts = {
+      jicofo = {
+        internal_ip = google_compute_instance.jicofo.network_interface[0].network_ip
+        #external_ip = google_compute_instance.jicofo.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }

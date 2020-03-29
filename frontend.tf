@@ -26,9 +26,13 @@ resource "google_compute_instance" "frontend" {
   allow_stopping_for_update = true
 }
 
-resource "local_file" "frontend-info" {
-    content  = jsonencode({
-      "terraform_vm": google_compute_instance.frontend
-    })
-    filename = "host_vars/frontend/terraform-info.json"
+locals {
+  frontend_ansible_inventory = {
+    hosts = {
+      frontend = {
+        internal_ip = google_compute_instance.frontend.network_interface[0].network_ip
+        external_ip = google_compute_instance.frontend.network_interface[0].access_config[0].nat_ip
+      }
+    }
+  }
 }
