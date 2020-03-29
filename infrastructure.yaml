@@ -10,3 +10,31 @@
       copy:
         content: "{{ terraform_run.outputs.ansible_inventory.value }}"
         dest: inventory.json
+    - name: refresh inventory
+      meta: refresh_inventory
+- hosts:
+  - all
+  tasks:
+   - name: add buildbot ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/buildbot.pub') }}"
+
+   - name: add markus ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/markus.pub') }}"
+
+   - name: add brian ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/brian.pub') }}"
+
+   - name: add florian ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/florian.pub') }}"

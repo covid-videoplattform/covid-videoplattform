@@ -12,7 +12,7 @@ buildbot_builders:
         command: terraform init
         workdir: covid-videoplattform
       - name: ansible
-        command: ansible-playbook infrastructure.yaml -v
+        command: ansible-playbook -i inventory.json infrastructure.yaml -v
         workdir: covid-videoplattform
       - name: copy inventory
         command: cp inventory.json ../..
