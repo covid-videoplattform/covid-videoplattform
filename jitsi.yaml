@@ -15,20 +15,21 @@
         certificate_common_name: "{{ jitsi_domain }}"
     - role: reverse-proxy
 
-- hosts:
-  - prosody_servers
+- hosts: prosody_servers
   roles:
     - role: jitsi-prosody
 
-- hosts:
-  - jicofo_servers
+- hosts: jicofo_servers
   roles:
     - role: jicofo
 
-- hosts:
-  - videobridges
+- hosts: videobridges
   roles:
     - role: jitsi-videobridge
+
+- hosts: frontend_servers
+  roles:
+    - role: jitsi-meet-web
 
 - hosts: monitoring
   roles:
