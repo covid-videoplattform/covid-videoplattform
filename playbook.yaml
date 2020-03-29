@@ -3,8 +3,14 @@
 - hosts: bastion_servers
   roles:
     - name: nginx
+    - name: ansible
+    - name: terraform
     - name: buildbot
   tasks:
+    - name: required debian packages
+      apt:
+        pkg:
+          - etcd-server
     - name: add other ips and hostnames to /etc/hosts
       lineinfile:
         path: /etc/hosts
