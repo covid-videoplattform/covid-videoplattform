@@ -4,7 +4,7 @@ resource "google_compute_address" "bastion_ip_address" {
 
 resource "google_compute_instance" "bastion" {
   name         = "bastion"
-  machine_type = "f1-micro"
+  machine_type = "g1-small"
 
   boot_disk {
     initialize_params {
@@ -24,6 +24,20 @@ resource "google_compute_instance" "bastion" {
   }
 
   allow_stopping_for_update = true
+
+  service_account {
+    scopes = [
+      "compute-rw",
+      "storage-full",
+      "cloud-platform",
+    ]
+  }
+
+  lifecycle {
+    ignore_changes = [
+      machine_type
+    ]
+  }
 }
 
 locals {
