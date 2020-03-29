@@ -25,7 +25,7 @@ locals {
     hosts = {
       frontend = {
         internal_ip = google_compute_instance.frontend.network_interface[0].network_ip
-        external_ip = google_compute_instance.frontend.network_interface[0].access_config[0].nat_ip
+        #external_ip = google_compute_instance.frontend.network_interface[0].access_config[0].nat_ip
       }
     }
   }
