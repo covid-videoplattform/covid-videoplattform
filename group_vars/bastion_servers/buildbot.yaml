@@ -14,6 +14,9 @@ buildbot_builders:
       - name: ansible
         command: ansible-playbook infrastructure.yaml -v
         workdir: covid-videoplattform
+      - name: copy inventory
+        command: cp inventory.json ..
+        workdir: covid-videoplattform
   terminfrontend:
     repos:
       - name: github covid-videoplattform
@@ -26,8 +29,8 @@ buildbot_builders:
         workdir: django-webfrontend
         repourl: https://github.com/covid-videoplattform/django-webfrontend.git
     shell_commands:
-      - name: hello world
-        command: echo Hello World!
+      - name: ansible
+        command: ansible-playbook -i ../inventory.json playbook.yaml --limit terminfrontend -v
         workdir: covid-videoplattform
   jitsi:
     repos:
