@@ -1,0 +1,6 @@
+---
+
+- hosts: terminfrontend_servers
+  roles:
+    - role: nginx
+    - role: terminfrontend

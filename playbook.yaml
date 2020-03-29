@@ -42,15 +42,6 @@
         certificate_common_name: "{{ jitsi_domain }}"
     - role: reverse-proxy
 
-- hosts: terminfrontend_servers
-  roles:
-    - role: nginx
-    - role: terminfrontend
-
-- hosts: frontend_servers
-  roles:
-    - role: jitsi-meet-web
-
 - hosts:
   - prosody_servers
   roles:
