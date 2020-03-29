@@ -23,7 +23,7 @@ resource "google_compute_instance" "bastion" {
     }
   }
 
-  allow_stopping_for_update = true
+  allow_stopping_for_update = false
 
   service_account {
     scopes = [
