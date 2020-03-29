@@ -33,11 +33,11 @@ resource "google_compute_instance" "bastion" {
     ]
   }
 
-  lifecycle {
-    ignore_changes = [
-      machine_type
-    ]
-  }
+  #lifecycle {
+  #  ignore_changes = [
+  #    machine_type
+  #  ]
+  #}
 }
 
 locals {
