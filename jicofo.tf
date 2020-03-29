@@ -1,7 +1,3 @@
-#resource "google_compute_address" "jicofo_ip_address" {
-#  name = "jicofo-ip-address"
-#}
-
 resource "google_compute_instance" "jicofo" {
   name         = "jicofo"
   machine_type = "g1-small"
@@ -18,9 +14,6 @@ resource "google_compute_instance" "jicofo" {
 
   network_interface {
     network = google_compute_network.videoplattform_network.self_link
-    #access_config {
-    #  nat_ip = google_compute_address.jicofo_ip_address.address
-    #}
   }
 
   allow_stopping_for_update = true
