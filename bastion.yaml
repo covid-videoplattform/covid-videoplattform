@@ -1,0 +1,24 @@
+---
+
+- hosts: bastion_servers
+  roles:
+    - name: nginx
+    - name: ansible
+    - name: terraform
+    - name: buildbot
+  tasks:
+    - name: required debian packages
+      apt:
+        pkg:
+          - etcd-server
+    - name: automatically accept new ssh host keys
+      lineinfile:
+        line: StrictHostKeyChecking accept-new
+        regex: '^[# ]*StrictHostKeyChecking'
+        path: /etc/ssh/ssh_config
+    - name: add other ips and hostnames to /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: "^.* {{ item }}"
+        line: "{{ hostvars[item].internal_ip }} {{ item }}"
+      with_items: "{{ groups.all }}"
