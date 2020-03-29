@@ -11,15 +11,11 @@
       apt:
         pkg:
           - etcd-server
-    - name: add other ips and hostnames to /etc/hosts
+    - name: automatically accept new ssh host keys
       lineinfile:
-        path: /etc/hosts
-        regexp: "{{ item }}"
-        line: "{{ hostvars[item].internal_ip }} {{ item }}"
-      with_items: "{{ groups.all }}"
-
-- hosts: bastion_servers
-  tasks:
+        line: StrictHostKeyChecking accept-new
+        regex: '^[# ]*StrictHostKeyChecking'
+        path: /etc/ssh/ssh_config
     - name: add other ips and hostnames to /etc/hosts
       lineinfile:
         path: /etc/hosts
@@ -60,6 +56,12 @@
 - hosts:
   - all
   tasks:
+   - name: add buildbot ssh pub key
+     authorized_key:
+       user: root
+       state: present
+       key: "{{ lookup('file', '.ssh/buildbot.pub') }}"
+
    - name: add markus ssh pub key
      authorized_key:
        user: root

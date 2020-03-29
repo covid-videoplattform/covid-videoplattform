@@ -20,7 +20,7 @@ resource "google_compute_instance" "jvb" {
   }
 
   metadata = {
-    ssh-keys = "root:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGwdEkFBdQfY5YB6LR1l+copG7rZXlGLQyWWwhZdNkpW"
+    ssh-keys = "root:${file(".ssh/buildbot.pub")}"
   }
 
   network_interface {
