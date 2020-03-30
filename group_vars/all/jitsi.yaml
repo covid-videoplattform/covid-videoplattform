@@ -8,4 +8,4 @@ jicofo_auth_password: dei5ooz8ohX2hie1oJaesh2v
 jvb_secret: ca9Joj0thahRou9toi2iesha
 
 jitsi_secure_domain: false
-jitsi_restrict_room_creation: true
+jitsi_restrict_room_creation: false
