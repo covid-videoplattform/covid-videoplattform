@@ -9,3 +9,4 @@ jvb_secret: ca9Joj0thahRou9toi2iesha
 
 jitsi_secure_domain: false
 jitsi_restrict_room_creation: false
+jitsi_restrict_room_exec: false
