@@ -16,9 +16,3 @@
         line: StrictHostKeyChecking accept-new
         regex: '^[# ]*StrictHostKeyChecking'
         path: /etc/ssh/ssh_config
-    - name: add other ips and hostnames to /etc/hosts
-      lineinfile:
-        path: /etc/hosts
-        regexp: "^.* {{ item }}"
-        line: "{{ hostvars[item].internal_ip }} {{ item }}"
-      with_items: "{{ groups.all }}"
