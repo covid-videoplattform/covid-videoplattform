@@ -12,7 +12,7 @@ buildbot_builders:
         command: terraform init
         workdir: covid-videoplattform
       - name: ansible
-        command: ansible-playbook -i inventory.json infrastructure.yaml -v
+        command: ansible-playbook -i inventory.json infrastructure.yaml
         workdir: covid-videoplattform
       - name: copy inventory
         command: cp inventory.json ../..
@@ -39,7 +39,7 @@ buildbot_builders:
         command: ln -sf ../ansible-roles roles
         workdir: covid-videoplattform
       - name: ansible
-        command: ansible-playbook -i ../../inventory.json terminfrontend.yaml --limit terminfrontend -v
+        command: ansible-playbook -i ../../inventory.json terminfrontend.yaml --limit terminfrontend
         workdir: covid-videoplattform
   jitsi:
     repos:
@@ -78,5 +78,5 @@ buildbot_builders:
         command: ln -sf ../ansible-roles roles
         workdir: covid-videoplattform
       - name: ansible
-        command: ansible-playbook -i ../../inventory.json jitsi.yaml -v
+        command: ansible-playbook -i ../../inventory.json jitsi.yaml
         workdir: covid-videoplattform
