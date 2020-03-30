@@ -6,3 +6,5 @@ turncredentials_secret: phahdaeghataimae0eF5is1d
 jicofo_host: "{{ prosody_ip }}"
 jicofo_auth_password: dei5ooz8ohX2hie1oJaesh2v
 jvb_secret: ca9Joj0thahRou9toi2iesha
+
+jitsi_secure_domain: true
