@@ -9,6 +9,7 @@ locals {
     jicofo_servers = local.jicofo_ansible_inventory
     prosody_servers = local.prosody_ansible_inventory
     videobridges = local.jvb_ansible_inventory
+    turn_servers = turn_servers_ansible_inventory
   }
 }
 output "ansible_inventory" {
