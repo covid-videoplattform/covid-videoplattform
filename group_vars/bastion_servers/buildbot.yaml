@@ -2,21 +2,21 @@ certificate_provider: letsencrypt
 buildbot_server_name: buildbot.covid-videoplattform.de
 
 buildbot_builders:
-  infrastructure:
-    repos:
-      - name: github covid-videoplattform
-        workdir: covid-videoplattform
-        repourl: https://github.com/covid-videoplattform/covid-videoplattform.git
-    shell_commands:
-      - name: terraform init
-        command: terraform init
-        workdir: covid-videoplattform
-      - name: ansible
-        command: ansible-playbook -i inventory.json infrastructure.yaml
-        workdir: covid-videoplattform
-      - name: copy inventory
-        command: cp inventory.json ../..
-        workdir: covid-videoplattform
+  # infrastructure:
+  #   repos:
+  #     - name: github covid-videoplattform
+  #       workdir: covid-videoplattform
+  #       repourl: https://github.com/covid-videoplattform/covid-videoplattform.git
+  #   shell_commands:
+  #     - name: terraform init
+  #       command: terraform init
+  #       workdir: covid-videoplattform
+  #     - name: ansible
+  #       command: ansible-playbook -i inventory.json infrastructure.yaml
+  #       workdir: covid-videoplattform
+  #     - name: copy inventory
+  #       command: cp inventory.json ../..
+  #       workdir: covid-videoplattform
   terminfrontend:
     repos:
       - name: github covid-videoplattform
