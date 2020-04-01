@@ -93,13 +93,15 @@ resource "hcloud_server_network" "vms" {
   for_each = local.hetzner_vm_hosts
 }
 
+# Provider Variable
+
 locals {
   provider_hetzner = {
     hostvars = {
       for hostname, host in var.vm_hosts: hostname =>
         {
-          #external_ip = hcloud_server.vms[hostname].ipv4_address
-          #internal_ip = hcloud_server_network.vms[hostname].ip
+          external_ip = hcloud_server.vms[hostname].ipv4_address
+          internal_ip = hcloud_server_network.vms[hostname].ip
         }
       if host.provider == "hetzner"
     }

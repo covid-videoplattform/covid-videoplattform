@@ -14,7 +14,7 @@ locals {
   ansible_inventory = {
     all = {
       hosts = {
-        for hostname,hostvars in var.vm_hosts: hostname => local.providers[hostvars.provider].hostvars[hostname]
+        for hostname,host in var.vm_hosts: hostname => {}
       }
       children = merge(
         {
@@ -29,7 +29,7 @@ locals {
           for providername, provider in local.providers: "provider_${providername}" => {
             hosts = {
               for hostname, host in local.vm_hosts_with_groups:
-                hostname => {}
+                hostname => local.providers[host.provider].hostvars[hostname]
                 if host.provider == providername
             }
           }
