@@ -1,17 +1,17 @@
 ---
 
-- hosts: localhost
-  tasks:
-    - name: deploy infrastructure with terraform
-      terraform:
-        project_path: "{{playbook_dir}}"
-      register: terraform_run
-    - name: write inventory for ansible
-      copy:
-        content: "{{ terraform_run.outputs.ansible_inventory.value }}"
-        dest: inventory.json
-    - name: refresh inventory
-      meta: refresh_inventory
+# - hosts: localhost
+#   tasks:
+#     - name: deploy infrastructure with terraform
+#       terraform:
+#         project_path: "{{playbook_dir}}"
+#       register: terraform_run
+#     - name: write inventory for ansible
+#       copy:
+#         content: "{{ terraform_run.outputs.ansible_inventory.value }}"
+#         dest: inventory.json
+#     - name: refresh inventory
+#       meta: refresh_inventory
 
 - hosts: bastion_servers
   tasks:

@@ -1,3 +1,8 @@
+variable "ansible_inventory_filename" {
+  type = string
+  default = "inventory.json"
+}
+
 locals {
   vm_hosts_with_groups = {
     for hostname, host in var.vm_hosts: hostname => host if contains(keys(host),"groups")
@@ -6,10 +11,7 @@ locals {
     for hostname, host in var.vm_hosts: hostname => host if !contains(keys(host),"groups")
   }
   vm_groups = distinct(flatten(values(local.hetzner_vm_hosts_with_groups)[*].groups))
-}
-
-output "ansible_inventory" {
-  value = {
+  ansible_inventory = {
     all = {
       hosts = {
         for hostname,hostvars in var.vm_hosts: hostname => local.providers[hostvars.provider].hostvars[hostname]
@@ -35,4 +37,13 @@ output "ansible_inventory" {
       )
     }
   }
+}
+
+output "ansible_inventory" {
+  value = local.ansible_inventory
+}
+
+resource "local_file" "foo" {
+    content = jsonencode(local.ansible_inventory)
+    filename = var.ansible_inventory_filename
 }
