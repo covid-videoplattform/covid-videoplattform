@@ -2,3 +2,7 @@
 terraform-info.json
 roles
 inventory.json
+*.auto.tfvars
+*.auto.tfvars.json
+terraform.tfstate
+terraform.tfstate.backup
