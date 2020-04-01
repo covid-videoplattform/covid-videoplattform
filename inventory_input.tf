@@ -4,6 +4,7 @@ variable "vm_hosts" {
     reverse-proxy = { provider = "hetzner", groups = [ "reverse_proxies" ] }
     terminfrontend = { provider = "hetzner", groups = [ "terminfrontend_servers", "postgresql_servers"  ] }
     jitsi-single = { provider = "hetzner", groups = [ "jitsi_prosody_servers", "jicofo_servers", "jitsi_webservers", "jitsi_videobridges" ] }
+    turn = { provider = "hetzner", groups = [ "turn_servers" ] }
   }
 }
 
